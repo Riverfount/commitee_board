@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "commitee_board"
+version = "0.1.0"
+description = "Web Scrapy que captura a Baca de Defesa dos trabalhos de Mestrado e Doutorado da Plataforma Sucupira da CAPES"
+authors = ["Vicente Marçal <vicente.marcal@gmail.com>"]
+license = "GPLv3+"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Scrapy = "^2.6.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
