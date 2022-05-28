@@ -1,12 +1,12 @@
-import csv
 import json
 import os
 from collections import OrderedDict
 
 path = os.curdir
-pathfile = os.path.join(path, 'banca.json')
+path_source_file = os.path.join(path, 'banca.json')
+path_destination_file = os.path.join(path, 'banca_sanitizada.json')
 
-with open(pathfile) as f:
+with open(path_source_file) as f:
     data = json.load(f)
 
 d = OrderedDict()
@@ -16,18 +16,5 @@ for l in data:
 
 new_dict = [{'url': k[0], 'banca': v.pop() if len(v) == 1 else v} for k, v in d.items()]
 
-lista_intermediaria = []
-lista_final = [['url', 'professor1', 'categoria1', 'professor2', 'categoria2', 'professor3', 'categoria3',
-               'professor4', 'catetoria4']]
-
-for nd in new_dict:
-    lista_intermediaria += [nd['url']]
-    for bc in nd['banca']:
-        lista_intermediaria += list(bc.values())
-    lista_final.append(lista_intermediaria)
-    lista_intermediaria = []
-
-with open('banca.csv', 'a') as f:
-    filewriter = csv.writer(f, delimiter=',')
-    for l in lista_final:
-        filewriter.writerow(l)
+with open(path_destination_file, 'w') as f:
+    json.dump(new_dict, f)
